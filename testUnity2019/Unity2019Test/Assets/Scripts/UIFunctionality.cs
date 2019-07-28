@@ -11,17 +11,23 @@ public class UIFunctionality : MonoBehaviour
     private Button zoomout;
     [SerializeField]
     private Button swap;
+
     Helper createPlanes;
+
     void Start()
     {
         createPlanes = new Helper();
         swap.onClick.AddListener(() => { createPlanes.SwapObj(); });
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        zoomin.onClick.AddListener(() =>
+        {
+            Helper.backgroundGameObj.transform.localScale = new Vector3(Helper.backgroundGameObj.transform.localScale.x + 0.1f, Helper.backgroundGameObj.transform.localScale.y + 0.1f, Helper.backgroundGameObj.transform.localScale.z);
+        });
+        zoomout.onClick.AddListener(() =>
+        {
+            if(Helper.backgroundGameObj.transform.lossyScale.x>0)
+            {
+                Helper.backgroundGameObj.transform.localScale = new Vector3(Helper.backgroundGameObj.transform.localScale.x - 0.1f, Helper.backgroundGameObj.transform.localScale.y - 0.1f, Helper.backgroundGameObj.transform.localScale.z);
+            }
+        });
     }
 }
