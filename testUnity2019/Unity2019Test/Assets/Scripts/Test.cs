@@ -10,4 +10,12 @@ public class Test : MonoBehaviour
     {
         Helper.Renderer(textureBackground, textureTop, textureTop, textureTop);
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Helper.swap();
+        }
+    }
 }

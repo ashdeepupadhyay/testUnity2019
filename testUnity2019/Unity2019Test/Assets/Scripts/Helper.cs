@@ -52,26 +52,29 @@ public static class Helper
     }
     public static void Renderer(Texture background,Texture top,Texture bottomLeft,Texture bottomRight)
     {
-        backgroundGameObj = CreatePlane(7, 7, false, background);
+        backgroundGameObj = CreatePlane(7, 7, true, background);
         RotateAroundY(backgroundGameObj);
 
-        topGameObj = CreatePlane(1, 1, false, top);
+        topGameObj = CreatePlane(1, 1, true, top);
         RotateAroundY(topGameObj);
         topGameObj.transform.SetParent(backgroundGameObj.transform);
         topGameObj.transform.position = new Vector3(-1, 4, -0.1f);
         topGameObj.transform.localScale = new Vector3(5, 2, 1);
+        topGameObj.AddComponent<FadeInFadeOut>();
 
-        bottomLeftGamObj = CreatePlane(1, 1, false, top);
-        RotateAroundY(bottomLeftGamObj);
+        bottomLeftGamObj = CreatePlane(1, 1, true, top);
         bottomLeftGamObj.transform.SetParent(backgroundGameObj.transform);
+        RotateAroundY(bottomLeftGamObj);
         bottomLeftGamObj.transform.position = new Vector3(-1, 1, -0.1f);
         bottomLeftGamObj.transform.localScale = new Vector3(2, 2, 1);
+        bottomLeftGamObj.AddComponent<RandomiseColor>();
 
-        bottomRightGameObj = CreatePlane(1, 1, false, top);
+        bottomRightGameObj = CreatePlane(1, 1, true, top);
         RotateAroundY(bottomRightGameObj);
         bottomRightGameObj.transform.SetParent(backgroundGameObj.transform);
         bottomRightGameObj.transform.position = new Vector3(-4, 1, -0.1f);
         bottomRightGameObj.transform.localScale = new Vector3(2, 2, 1);
+        bottomRightGameObj.AddComponent<RandomShininess>();
     }
 
     public static void swap()
