@@ -6,16 +6,20 @@ public class Test : MonoBehaviour
 {
     public Texture textureBackground;
     public Texture textureTop;
+    public Texture bottomLeft;
+    public Texture bottomRight;
+    Helper createPlanes;
     void Start()
     {
-        Helper.Renderer(textureBackground, textureTop, textureTop, textureTop);
+        createPlanes = new Helper();
+        createPlanes.Renderer(textureBackground, textureTop, bottomLeft, bottomRight);
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Helper.swap();
+            createPlanes.SwapObj();
         }
     }
 }

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Helper 
+public class Helper 
 {
     public static GameObject backgroundGameObj;
     public static GameObject topGameObj;
     public static GameObject bottomLeftGamObj;
     public static GameObject bottomRightGameObj;
-    public static GameObject CreatePlane(float width,float height,bool collider,Texture texture)
+    public GameObject CreatePlane(float width,float height,bool collider,Texture texture)
     {
         GameObject go = new GameObject("Plane");
         MeshFilter mf = go.AddComponent(typeof(MeshFilter)) as MeshFilter;
@@ -44,13 +44,13 @@ public static class Helper
 
         return go;
     }
-    public static void RotateAroundY(GameObject obj)
+    public void RotateAroundY(GameObject obj)
     {
         Vector3 rot = obj.transform.rotation.eulerAngles;
         rot = new Vector3(rot.x, rot.y + 180, rot.z);
         obj.transform.rotation = Quaternion.Euler(rot);
     }
-    public static void Renderer(Texture background,Texture top,Texture bottomLeft,Texture bottomRight)
+    public void Renderer(Texture background,Texture top,Texture bottomLeft,Texture bottomRight)
     {
         backgroundGameObj = CreatePlane(7, 7, true, background);
         RotateAroundY(backgroundGameObj);
@@ -77,7 +77,7 @@ public static class Helper
         bottomRightGameObj.AddComponent<RandomShininess>();
     }
 
-    public static void swap()
+    public void SwapObj()
     {
         float temp=topGameObj.transform.position.y;
         topGameObj.transform.position = new Vector3(topGameObj.transform.position.x, bottomRightGameObj.transform.position.y, topGameObj.transform.position.z);
