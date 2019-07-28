@@ -44,37 +44,41 @@ public static class Helper
 
         return go;
     }
-
+    public static void RotateAroundY(GameObject obj)
+    {
+        Vector3 rot = obj.transform.rotation.eulerAngles;
+        rot = new Vector3(rot.x, rot.y + 180, rot.z);
+        obj.transform.rotation = Quaternion.Euler(rot);
+    }
     public static void Renderer(Texture background,Texture top,Texture bottomLeft,Texture bottomRight)
     {
         backgroundGameObj = CreatePlane(7, 7, false, background);
-        Vector3 rot = backgroundGameObj.transform.rotation.eulerAngles;
-        rot = new Vector3(rot.x, rot.y + 180, rot.z);
-        backgroundGameObj.transform.rotation = Quaternion.Euler(rot);
+        RotateAroundY(backgroundGameObj);
 
         topGameObj = CreatePlane(1, 1, false, top);
-        Vector3 rot1 = topGameObj.transform.rotation.eulerAngles;
-        rot1 = new Vector3(rot1.x, rot1.y + 180, rot1.z);
-        topGameObj.transform.rotation = Quaternion.Euler(rot1);
+        RotateAroundY(topGameObj);
         topGameObj.transform.SetParent(backgroundGameObj.transform);
         topGameObj.transform.position = new Vector3(-1, 4, -0.1f);
         topGameObj.transform.localScale = new Vector3(5, 2, 1);
 
         bottomLeftGamObj = CreatePlane(1, 1, false, top);
-        Vector3 rot2 = bottomLeftGamObj.transform.rotation.eulerAngles;
-        rot2 = new Vector3(rot2.x, rot2.y + 180, rot2.z);
-        bottomLeftGamObj.transform.rotation = Quaternion.Euler(rot2);
+        RotateAroundY(bottomLeftGamObj);
         bottomLeftGamObj.transform.SetParent(backgroundGameObj.transform);
         bottomLeftGamObj.transform.position = new Vector3(-1, 1, -0.1f);
         bottomLeftGamObj.transform.localScale = new Vector3(2, 2, 1);
 
         bottomRightGameObj = CreatePlane(1, 1, false, top);
-        Vector3 rot3 = bottomRightGameObj.transform.rotation.eulerAngles;
-        rot3 = new Vector3(rot3.x, rot3.y + 180, rot3.z);
-        bottomRightGameObj.transform.rotation = Quaternion.Euler(rot3);
+        RotateAroundY(bottomRightGameObj);
         bottomRightGameObj.transform.SetParent(backgroundGameObj.transform);
         bottomRightGameObj.transform.position = new Vector3(-4, 1, -0.1f);
         bottomRightGameObj.transform.localScale = new Vector3(2, 2, 1);
+    }
 
+    public static void swap()
+    {
+        float temp=topGameObj.transform.position.y;
+        topGameObj.transform.position = new Vector3(topGameObj.transform.position.x, bottomRightGameObj.transform.position.y, topGameObj.transform.position.z);
+        bottomRightGameObj.transform.position = new Vector3(bottomRightGameObj.transform.position.x, temp, bottomRightGameObj.transform.position.z);
+        bottomLeftGamObj.transform.position = new Vector3(bottomLeftGamObj.transform.position.x, temp, bottomLeftGamObj.transform.position.z);
     }
 }
