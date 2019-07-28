@@ -62,14 +62,14 @@ public class Helper
         topGameObj.transform.localScale = new Vector3(5, 2, 1);
         topGameObj.AddComponent<FadeInFadeOut>();
 
-        bottomLeftGamObj = CreatePlane(1, 1, true, top);
+        bottomLeftGamObj = CreatePlane(1, 1, true, bottomRight);
         bottomLeftGamObj.transform.SetParent(backgroundGameObj.transform);
         RotateAroundY(bottomLeftGamObj);
         bottomLeftGamObj.transform.position = new Vector3(-1, 1, -0.1f);
         bottomLeftGamObj.transform.localScale = new Vector3(2, 2, 1);
         bottomLeftGamObj.AddComponent<RandomiseColor>();
 
-        bottomRightGameObj = CreatePlane(1, 1, true, top);
+        bottomRightGameObj = CreatePlane(1, 1, true, bottomLeft);
         RotateAroundY(bottomRightGameObj);
         bottomRightGameObj.transform.SetParent(backgroundGameObj.transform);
         bottomRightGameObj.transform.position = new Vector3(-4, 1, -0.1f);
